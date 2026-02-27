@@ -1,13 +1,30 @@
-server:
-  port: 8081
-
 spring:
   datasource:
-    url: jdbc:mysql://mysql:3306/productdb
+    url: jdbc:mysql://localhost:3306/productdb
     username: root
     password: Piku@2024
 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
   data:
     redis:
-      host: redis
+      host: localhost
       port: 6379
+
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+  tracing:
+    sampling:
+      probability: 1.0
